@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-// Import your page components with explicit extensions to help Vite
+// Import your page components with explicit lowercase extensions
 import About from './pages/About.jsx';
 import Gallery from './pages/Gallery.jsx';
 import Enquiry from './pages/Enquiry.jsx';
 
 // Import your logo image from the assets folder
-import logoImg from './assets/Tovo_logo.jpg'; 
-
+import logoImg from './assets/Tovo_logo.jpg';
 // Placeholder components for Home
 const Home = () => (
   <section style={{ padding: '8rem 6rem', minHeight: '80vh' }}>
