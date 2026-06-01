@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-// Import your page components
-import About from './pages/About';
-import Gallery from './pages/Gallery';
-import Enquiry from './pages/Enquiry';
+// Import your page components with explicit extensions to help Vite
+import About from './pages/About.jsx';
+import Gallery from './pages/Gallery.jsx';
+import Enquiry from './pages/Enquiry.jsx';
 
 // Import your logo image from the assets folder
 import logoImg from './assets/Tovo_logo.jpg'; 
@@ -27,7 +27,7 @@ const Pricing = () => (
       <p style={{ color: '#7a7060' }}>Transparent tiers or a tailored experience built entirely by you.</p>
     </div>
 
-    {/* Pricing Cards Grid — Optimized for 4-cards spacing */}
+    {/* Pricing Cards Grid */}
     <div style={{ 
       display: 'grid', 
       gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
@@ -117,7 +117,7 @@ const Pricing = () => (
       <h4 style={{ fontFamily: 'serif', fontSize: '1.3rem', color: '#2c4a35', margin: '0 0 1rem 0' }}>Available Production Add-ons</h4>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '1.5rem', color: '#7a7060', fontSize: '0.95rem' }}>
         <div><strong>24-Hour Express Delivery:</strong> £30</div>
-        <div><strong>Travel Fees:</strong> Calculated dynamically (Based on Uber Fee pricing)</div>
+        <div><strong>Travel Fees:</strong> Calculated dynamically</div>
       </div>
     </div>
   </section>
