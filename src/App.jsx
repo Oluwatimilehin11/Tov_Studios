@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-// Import your page components with explicit lowercase extensions
-import About from './pages/About.jsx';
-import Gallery from './pages/Gallery.jsx';
-import Enquiry from './pages/Enquiry.jsx';
+// Changed to capital 'Pages' to match your GitHub directory exactly
+import About from './Pages/About.jsx';
+import Gallery from './Pages/Gallery.jsx';
+import Enquiry from './Pages/Enquiry.jsx';
 
 // Import your logo image from the assets folder
 import logoImg from './assets/Tovo_logo.jpg';
