@@ -1,0 +1,18 @@
+.cursor, .cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.nav-logo-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-logo-img {
+  height: 40px; /* Adjust this number to make the logo look perfect in your nav bar */
+  width: auto;  /* Keeps the aspect ratio perfectly intact */
+  object-fit: contain;
+}
