@@ -5,7 +5,6 @@
   padding: 0;
 }
 
-/* Base custom font tokens */
 :root {
   --forest: #2c4a35;
   --sand: #f7f3ec;
@@ -15,38 +14,46 @@
 body {
   background-color: var(--sand);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Hide the default chunky operating system cursor across the canvas */
-html, body, button, input, select, textarea, a {
-  cursor: none !important;
+/* Hide the custom cursor ONLY on desktop; disable on touchscreens so it doesn't glitch */
+@media (hover: hover) and (pointer: fine) {
+  html, body, button, input, select, textarea, a {
+    cursor: none !important;
+  }
+  .custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #a39885;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+  }
+  .custom-cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid #a39885;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998;
+    will-change: left, top;
+  }
 }
 
-/* ── INERTIA MOUSE STYLING ── */
-.custom-cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #a39885;
-  border-radius: 50%;
-  position: fixed;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 9999;
+/* Completely hides cursor nodes on mobile devices */
+@media (hover: none) or (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
 }
 
-.custom-cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid #a39885;
-  border-radius: 50%;
-  position: fixed;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 9998;
-  will-change: left, top;
-}
-
-/* ── RIGHT-ALIGNED STICKY HEADER STYLING ── */
+/* ── STICKY NAV STRUCTURE ── */
 nav {
   position: fixed;
   top: 0;
@@ -60,9 +67,9 @@ nav {
   background: var(--sand); 
   z-index: 1000;
   border-bottom: 1px solid rgba(44, 74, 53, 0.08);
+  transition: padding 0.3s ease, height 0.3s ease;
 }
 
-/* Stops logo blowing up from Screenshot 1 */
 .nav-logo-container {
   height: 45px; 
   display: flex;
@@ -75,7 +82,6 @@ nav {
   object-fit: contain;
 }
 
-/* Spreads items cleanly across the right edge like Screenshot 2 */
 .nav-links-wrapper {
   display: flex;
   align-items: center;
@@ -118,7 +124,7 @@ nav {
   color: var(--sand);
 }
 
-/* ── EDITORIAL LINES & TYPOGRAPHY CODES ── */
+/* ── EDITORIAL MODULE RULES ── */
 .editorial-line {
   width: 100%;
   height: 1px;
@@ -130,4 +136,65 @@ nav {
   font-family: serif;
   font-style: italic;
   font-weight: normal;
+}
+
+/* ── 📱 PHONE RESPONSIVE MEDIA QUERIES ── */
+@media (max-width: 1024px) {
+  nav {
+    padding: 0 2rem;
+    height: 80px;
+  }
+  
+  .nav-links-wrapper {
+    gap: 1.5rem;
+  }
+  
+  .nav-links {
+    gap: 1.5rem;
+  }
+  
+  .nav-links li {
+    font-size: 0.85rem;
+    letter-spacing: 0.08rem;
+  }
+}
+
+/* Target standard mobile devices (600px and below) */
+@media (max-width: 600px) {
+  nav {
+    padding: 0 1.5rem;
+    height: 75px;
+  }
+
+  /* Hide raw links to prevent screen crowding, keep logo and booking button prominent */
+  .nav-links {
+    display: none; 
+  }
+  
+  .nav-links-wrapper {
+    gap: 0;
+  }
+
+  .nav-cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05rem;
+  }
+
+  /* Global scale down for text elements on mobile viewports */
+  h1 {
+    font-size: 2.8rem !important;
+  }
+  
+  h2 {
+    font-size: 2.2rem !important;
+  }
+  
+  h3 {
+    font-size: 1.6rem !important;
+  }
+
+  .editorial-line {
+    margin: 2.5rem 0;
+  }
 }
