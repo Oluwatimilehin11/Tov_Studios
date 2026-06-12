@@ -1,18 +1,29 @@
-.cursor, .cursor-ring {
-  position: fixed;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-}
-.nav-logo-container {
-  display: flex;
-  align-items: center;
-  height: 100%;
+/* Hide the default bulky operating system cursor across the canvas */
+html, body, button, input, select, textarea, a {
+  cursor: none !important;
 }
 
-.nav-logo-img {
-  height: 40px; /* Adjust this number to make the logo look perfect in your nav bar */
-  width: auto;  /* Keeps the aspect ratio perfectly intact */
-  object-fit: contain;
+/* The solid core focal dot */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #a39885; /* Warm editorial accent tone */
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* The fluid outer trailing ring circle */
+.custom-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #a39885;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  will-change: left, top;
 }
