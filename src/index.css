@@ -1,13 +1,32 @@
-/* Hide the default bulky operating system cursor across the canvas */
+/* Reset basic global padding defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base custom font tokens */
+:root {
+  --forest: #2c4a35;
+  --sand: #f7f3ec;
+  --accent: #a39885;
+}
+
+body {
+  background-color: var(--sand);
+  overflow-x: hidden;
+}
+
+/* Hide the default chunky operating system cursor across the canvas */
 html, body, button, input, select, textarea, a {
   cursor: none !important;
 }
 
-/* The solid core focal dot */
+/* ── INERTIA MOUSE STYLING ── */
 .custom-cursor-dot {
   width: 8px;
   height: 8px;
-  background-color: #a39885; /* Warm editorial accent tone */
+  background-color: #a39885;
   border-radius: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -15,7 +34,6 @@ html, body, button, input, select, textarea, a {
   z-index: 9999;
 }
 
-/* The fluid outer trailing ring circle */
 .custom-cursor-ring {
   width: 36px;
   height: 36px;
@@ -26,4 +44,90 @@ html, body, button, input, select, textarea, a {
   pointer-events: none;
   z-index: 9998;
   will-change: left, top;
+}
+
+/* ── RIGHT-ALIGNED STICKY HEADER STYLING ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 5rem; 
+  background: var(--sand); 
+  z-index: 1000;
+  border-bottom: 1px solid rgba(44, 74, 53, 0.08);
+}
+
+/* Stops logo blowing up from Screenshot 1 */
+.nav-logo-container {
+  height: 45px; 
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-img {
+  height: 100%; 
+  width: auto;   
+  object-fit: contain;
+}
+
+/* Spreads items cleanly across the right edge like Screenshot 2 */
+.nav-links-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4rem; 
+}
+
+.nav-links {
+  display: flex;
+  gap: 3.5rem; 
+  list-style: none;
+}
+
+.nav-links li {
+  font-family: serif;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem; 
+  color: var(--forest);
+  transition: opacity 0.3s ease;
+}
+
+.nav-links li:hover {
+  opacity: 0.6;
+}
+
+.nav-cta {
+  font-family: serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  color: var(--forest);
+  background: transparent;
+  border: 1px solid var(--forest);
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+  background: var(--forest);
+  color: var(--sand);
+}
+
+/* ── EDITORIAL LINES & TYPOGRAPHY CODES ── */
+.editorial-line {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(44, 74, 53, 0.15);
+  margin: 4rem 0;
+}
+
+.serif-italic {
+  font-family: serif;
+  font-style: italic;
+  font-weight: normal;
 }

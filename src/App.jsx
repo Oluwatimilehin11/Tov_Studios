@@ -19,11 +19,8 @@ const CustomCursor = () => {
 
   useEffect(() => {
     let animationFrameId;
-    
     const updateRing = () => {
       setRingPosition((prev) => {
-        // 0.15 controls the fluid lag delay. 
-        // Lower numbers make it looser, higher numbers make it tighter.
         const easeFactor = 0.15; 
         const nextX = prev.x + (position.x - prev.x) * easeFactor;
         const nextY = prev.y + (position.y - prev.y) * easeFactor;
@@ -31,7 +28,6 @@ const CustomCursor = () => {
       });
       animationFrameId = requestAnimationFrame(updateRing);
     };
-    
     animationFrameId = requestAnimationFrame(updateRing);
     return () => cancelAnimationFrame(animationFrameId);
   }, [position]);
@@ -44,36 +40,34 @@ const CustomCursor = () => {
   );
 };
 
-// ── STICKY NAVIGATION COMPONENT ──
+// ── FIXED NAVIGATION COMPONENT FOR RIGHT ALIGNMENT ──
 const Navigation = ({ scrollToSection, refs }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <nav className={isScrolled ? 'scrolled' : ''}>
+    <nav>
+      {/* Logo locked safely on the left edge */}
       <div className="nav-logo-container" style={{ cursor: 'pointer' }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <img src={logoImg} alt="Tov Studios Logo" className="nav-logo-img" />
       </div>
 
-      <ul className="nav-links">
-        <li onClick={() => scrollToSection(refs.about)} style={{ cursor: 'pointer' }}>About</li>
-        <li onClick={() => scrollToSection(refs.gallery)} style={{ cursor: 'pointer' }}>Gallery</li>
-        <li onClick={() => scrollToSection(refs.pricing)} style={{ cursor: 'pointer' }}>Pricing</li>
-        <li onClick={() => scrollToSection(refs.enquiry)} style={{ cursor: 'pointer' }}>Availability</li>
-      </ul>
-      <button onClick={() => scrollToSection(refs.enquiry)} className="nav-cta" style={{ border: 'none', cursor: 'pointer' }}>Book a Session</button>
+      {/* Wrapper pushes menu actions cleanly to the right side like Screenshot 2 */}
+      <div className="nav-links-wrapper">
+        <ul className="nav-links">
+          <li onClick={() => scrollToSection(refs.gallery)} style={{ cursor: 'pointer' }}>Gallery</li>
+          <li onClick={() => scrollToSection(refs.about)} style={{ cursor: 'pointer' }}>About</li>
+          <li onClick={() => scrollToSection(refs.pricing)} style={{ cursor: 'pointer' }}>Pricing</li>
+          <li onClick={() => scrollToSection(refs.enquiry)} style={{ cursor: 'pointer' }}>Availability</li>
+        </ul>
+
+        <button onClick={() => scrollToSection(refs.enquiry)} className="nav-cta" style={{ cursor: 'pointer' }}>
+          Book a Session
+        </button>
+      </div>
     </nav>
   );
 };
 
 // ── MAIN APPLICATION LANDING ──
 export default function App() {
-  // References for vertical landing anchors
   const aboutRef = React.useRef(null);
   const galleryRef = React.useRef(null);
   const pricingRef = React.useRef(null);
@@ -81,7 +75,7 @@ export default function App() {
 
   const scrollToSection = (elementRef) => {
     window.scrollTo({
-      top: elementRef.current.offsetTop - 80,
+      top: elementRef.current.offsetTop - 90,
       behavior: 'smooth',
     });
   };
@@ -92,7 +86,7 @@ export default function App() {
       <Navigation scrollToSection={scrollToSection} refs={{ about: aboutRef, gallery: galleryRef, pricing: pricingRef, enquiry: enquiryRef }} />
 
       {/* HERO SECTION */}
-      <header style={{ padding: '12rem 6rem 8rem 6rem', background: '#f7f3ec', minHeight: '85vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <header style={{ padding: '15rem 6rem 8rem 6rem', background: '#f7f3ec', minHeight: '85vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div style={{ maxWidth: '900px' }}>
           <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.15rem', color: '#a39885', display: 'block', marginBottom: '1.5rem' }}>
             Photography with Purpose
@@ -130,7 +124,7 @@ export default function App() {
             </div>
             
             <div style={{ marginTop: '2.5rem' }}>
-              <p style={{ fontSize: '1.4rem', lineHeight: '1.9', color: '#2c4a35', fontFamily: 'serif', margin: '0 0 2rem 0', fontWeight: 'normal' }}>
+              <p style={{ fontSize: '1.4rem', lineHeight: '1.9', color: '#2c4a35', fontFamily: 'serif', margin: '0 0 2rem 0' }}>
                 The name <strong>Tov</strong> comes from a Hebrew word meaning <em>good, pleasant, and fit for a purpose</em>. That meaning is at the heart of everything we do.
               </p>
               <p style={{ fontSize: '1.15rem', lineHeight: '1.9', color: '#7a7060', margin: 0 }}>
@@ -143,41 +137,31 @@ export default function App() {
 
           {/* Asymmetrical Overlapping Core Pillars */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem', marginTop: '6rem' }}>
-            
-            {/* Pillar 1 */}
             <div style={{ gridColumn: '1 / span 5', paddingRight: '2rem', marginBottom: '4rem' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.5rem', display: 'block', marginBottom: '1rem' }}>✦ Intentional</span>
               <p style={{ color: '#7a7060', lineHeight: '1.8', fontSize: '1.05rem', margin: 0 }}>
-                Every single frame is composed with absolute care and deep meaning. We don't just click buttons; we plan the emotional landscape of your frame.
+                Every single frame is composed with absolute care and deep meaning. We plan the emotional landscape of your frame.
               </p>
             </div>
-
-            {/* Pillar 2 - Offset vertically */}
             <div style={{ gridColumn: '7 / span 5', paddingTop: '4rem', paddingLeft: '2rem', marginBottom: '4rem' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.5rem', display: 'block', marginBottom: '1rem' }}>◈ Affirming</span>
               <p style={{ color: '#7a7060', lineHeight: '1.8', fontSize: '1.05rem', margin: 0 }}>
-                We design an environment where you feel safe, calm, and fully seen. Your experience behind the lens matters just as much as the print.
+                We design an environment where you feel safe, calm, and fully seen. Your experience behind the lens matters.
               </p>
             </div>
-
-            {/* Pillar 3 */}
             <div style={{ gridColumn: '2 / span 5', paddingRight: '2rem' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.5rem', display: 'block', marginBottom: '1rem' }}>◇ Authentic</span>
               <p style={{ color: '#7a7060', lineHeight: '1.8', fontSize: '1.05rem', margin: 0 }}>
                 No rigid rules. Real moments, true raw expressions, and the absolute real version of you anchor our work.
               </p>
             </div>
-
-            {/* Pillar 4 - Offset vertically */}
             <div style={{ gridColumn: '8 / span 5', paddingTop: '4rem', paddingLeft: '2rem' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.5rem', display: 'block', marginBottom: '1rem' }}>❈ Purposeful</span>
               <p style={{ color: '#7a7060', lineHeight: '1.8', fontSize: '1.05rem', margin: 0 }}>
-                Documenting life transitions with a layout meant to outlast passing trends. Art made to remind you of your worth forever.
+                Documenting life transitions with a layout meant to outlast passing trends. Art made to remind you of your worth.
               </p>
             </div>
-
           </div>
-
         </div>
       </section>
 
@@ -188,8 +172,6 @@ export default function App() {
           <h2 style={{ fontFamily: 'serif', fontSize: '3.5rem', color: '#2c4a35', marginTop: '0.5rem', marginBottom: '4rem', fontWeight: 'normal' }}>
             Moments preserved
           </h2>
-
-          {/* Editorial Photo Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
             <div style={{ position: 'relative', background: '#d0caae', minHeight: '500px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
               <span style={{ color: '#fff', fontSize: '0.9rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif' }}>Wedding</span>
@@ -210,8 +192,6 @@ export default function App() {
       {/* ── HIGH-END EDITORIAL PRICING LAYOUT (JULIA & GIL STYLE) ── */}
       <section ref={pricingRef} style={{ padding: '12rem 6rem', background: '#2c4a35', color: '#fff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          
-          {/* Section Header */}
           <div style={{ maxWidth: '600px', marginBottom: '8rem' }}>
             <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.2rem', color: '#a39885', display: 'block', marginBottom: '1.5rem' }}>
               02 / The Investment
@@ -221,81 +201,56 @@ export default function App() {
             </h2>
           </div>
 
-          {/* Clean Magazine Style Row-By-Row Pricing */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            
             {/* TIER 1 */}
             <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 2fr 1.5fr 1fr', gap: '2rem', alignItems: 'start', padding: '3rem 0', borderTop: '1px solid rgba(247, 243, 236, 0.15)' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>01</span>
               <div>
-                <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
-                  🌿 Portrait Session
-                </h3>
-                <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
-                  Individual or small group sessions. Built seamlessly for timeless headshots, professional branding, or private transformations.
-                </p>
+                <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>🌿 Portrait Session</h3>
+                <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>Individual or small group sessions. Timeless headshots, professional branding, or private transformations.</p>
               </div>
               <ul style={{ color: '#a39885', listStyleType: 'none', padding: 0, margin: 0, lineHeight: '2', fontSize: '0.95rem' }}>
                 <li>— 1 to 2 Hour Duration</li>
                 <li>— 2 Outfit Changes</li>
                 <li>— 30+ Curated Digital Prints</li>
               </ul>
-              <div style={{ textAlign: 'right', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec' }}>
-                £250
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>From</span>
-              </div>
+              <div style={{ textAlign: 'right', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec' }}>£250<span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', marginTop: '0.25rem' }}>From</span></div>
             </div>
 
             {/* TIER 2 */}
             <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 2fr 1.5fr 1fr', gap: '2rem', alignItems: 'start', padding: '3rem 0', borderTop: '1px solid rgba(247, 243, 236, 0.15)' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>02</span>
               <div>
-                <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
-                  🎂 Events & Milestones
-                </h3>
-                <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
-                  Beautiful preservation for graduations, birthday celebrations, baby showers, or dynamic community moments.
-                </p>
+                <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>🎂 Events & Milestones</h3>
+                <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>Beautiful preservation for graduations, birthday celebrations, or dynamic community moments.</p>
               </div>
               <ul style={{ color: '#a39885', listStyleType: 'none', padding: 0, margin: 0, lineHeight: '2', fontSize: '0.95rem' }}>
                 <li>— Up to 3 Hours Coverage</li>
                 <li>— Candid & Posed Curation</li>
                 <li>— 60+ High-Res Deliverables</li>
               </ul>
-              <div style={{ textAlign: 'right', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec' }}>
-                £400
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>From</span>
-              </div>
+              <div style={{ textAlign: 'right', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec' }}>£400<span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', marginTop: '0.25rem' }}>From</span></div>
             </div>
 
             {/* TIER 3 */}
             <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 2fr 1.5fr 1fr', gap: '2rem', alignItems: 'start', padding: '3rem 0', borderTop: '1px solid rgba(247, 243, 236, 0.15)', borderBottom: '1px solid rgba(247, 243, 236, 0.15)' }}>
               <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>03</span>
               <div>
-                <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
-                  💍 Wedding & Engagement
-                </h3>
-                <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
-                  Complete day or half-day luxury documentary storytelling coverage. Formatted beautifully from vows to the late night frames.
-                </p>
+                <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>💍 Wedding & Engagement</h3>
+                <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>Luxury documentary storytelling coverage formatted beautifully from vows to the late night frames.</p>
               </div>
               <ul style={{ color: '#a39885', listStyleType: 'none', padding: 0, margin: 0, lineHeight: '2', fontSize: '0.95rem' }}>
                 <li>— Full Structural Timeline</li>
                 <li>— 48-Hour Sneak Peek Prints</li>
                 <li>— 100+ Final Curated Gallery</li>
               </ul>
-              <div style={{ textAlign: 'right', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec' }}>
-                £1,200
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>From</span>
-              </div>
+              <div style={{ textAlign: 'right', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec' }}>£1,200<span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', marginTop: '0.25rem' }}>From</span></div>
             </div>
-
           </div>
 
-          {/* Asymmetric Bespoke Callout Section Below Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: '1.51fr 1fr', gap: '4rem', marginTop: '8rem', alignItems: 'center' }}>
             <p style={{ color: '#cbd5e1', fontSize: '1.15rem', lineHeight: '1.8', margin: 0 }}>
-              Don't see a structure that perfectly mirrors your plans? We offer bespoke customization options where you control the timeline, image volume, and destination boundaries.
+              Don't see a structure that perfectly mirrors your plans? We offer bespoke customization options where you control the timeline.
             </p>
             <div style={{ textAlign: 'right' }}>
               <button onClick={() => scrollToSection(enquiryRef)} style={{ background: '#f7f3ec', color: '#2c4a35', border: 'none', padding: '1.2rem 2.5rem', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1rem', cursor: 'pointer', fontWeight: 'bold' }}>
@@ -303,7 +258,6 @@ export default function App() {
               </button>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -320,13 +274,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* RESERVE YOUR DATE / ENQUIRY SYSTEM */}
+      {/* AVAILABILITY / ENQUIRY SECTION */}
       <section ref={enquiryRef} style={{ padding: '8rem 6rem', background: '#ffffff' }}>
         <div style={{ maxWidth: '700px', margin: '0 auto', border: '1px solid #e0dbd3', padding: '4rem' }}>
           <h2 style={{ fontFamily: 'serif', fontSize: '2.5rem', color: '#2c4a35', marginBottom: '3rem', fontWeight: 'normal', textAlign: 'center' }}>
             Reserve Your Date
           </h2>
-          
           <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
               <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
@@ -338,17 +291,14 @@ export default function App() {
                 <input type="text" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
               </label>
             </div>
-
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
               Email Address
               <input type="email" placeholder="hello@example.com" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
             </label>
-
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
               Preferred Date
               <input type="date" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
             </label>
-
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
               Preferred Location
               <select style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec', color: '#4a5e4e' }}>
@@ -359,12 +309,10 @@ export default function App() {
                 <option>Urban / City</option>
               </select>
             </label>
-
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
               Anything Else? (Optional)
               <textarea rows="4" placeholder="Tell us about your vision..." style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }}></textarea>
             </label>
-
             <button type="submit" style={{ background: '#2c4a35', color: '#fff', border: 'none', padding: '1.2rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1rem', marginTop: '1rem', cursor: 'pointer' }}>
               Submit Booking Request
             </button>
@@ -373,7 +321,7 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ padding: '6rem', background: '#2c4a35', color: '#fff', borderTop: '1px solid rgba(247, 243, 236, 0.1)', textAlign: 'center' }}>
+      <footer style={{ padding: '6rem', background: '#2c4a35', color: '#fff', textAlign: 'center' }}>
         <div style={{ fontFamily: 'serif', fontSize: '2rem', marginBottom: '0.5rem' }}>Tov Studios</div>
         <div style={{ color: '#a39885', fontSize: '0.9rem', marginBottom: '3rem', fontStyle: 'italic' }}>Good. Pleasant. Fit for a purpose.</div>
         <div style={{ fontSize: '0.8rem', color: 'rgba(247, 243, 236, 0.4)' }}>
