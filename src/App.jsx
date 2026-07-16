@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import logoImg from './assets/Tovo_logo.jpg'; 
 
@@ -114,7 +113,7 @@ export default function App() {
   };
 
   return (
-    <Router>
+    <>
       <CustomCursor />
       <Navigation scrollToSection={scrollToSection} refs={{ about: aboutRef, gallery: galleryRef, pricing: pricingRef, enquiry: enquiryRef }} />
 
@@ -545,6 +544,6 @@ export default function App() {
           © {new Date().getFullYear()} Tov Studios. All rights reserved.
         </div>
       </footer>
-    </Router>
+    </>
   );
 }
