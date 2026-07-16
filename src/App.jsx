@@ -2,16 +2,38 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default function App() {
-  // Assuming these are defined at the top of your component
+  // Navigation and screen responsiveness hooks
   const [isMobile, setIsMobile] = useState(false); 
   const enquiryRef = React.useRef(null);
 
   // React state to handle showing the success message locally after submit
   const [submitted, setSubmitted] = useState(false);
 
-  // We detect when the native browser form submits to toggle our local success state
-  const handleSubmit = (e) => {
-    setSubmitted(true);
+  // Handles submitting via AJAX fetch to Formspree so we don't reload the page
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Keeps the page from reloading or redirecting to Formspree
+    
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xlgqgvrn', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: data
+      });
+
+      if (response.ok) {
+        setSubmitted(true); // Triggers your beautiful styled green success message!
+        form.reset();       // Clears the inputs in the background
+      } else {
+        alert("Oops! There was a problem submitting your request. Please try again.");
+      }
+    } catch (error) {
+      alert("Connection error. Please check your internet and try again.");
+    }
   };
 
   return (
@@ -41,8 +63,6 @@ export default function App() {
           ) : (
             <form 
               onSubmit={handleSubmit}
-              action="https://formspree.io/f/xlgqgvrn" 
-              method="POST" 
               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
             >
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.5rem' }}>
