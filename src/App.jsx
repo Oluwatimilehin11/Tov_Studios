@@ -148,7 +148,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* ABOUT SECTION (JULIA & GIL STYLE) */}
+      {/* ABOUT SECTION */}
       <section ref={aboutRef} style={{ padding: isMobile ? '5rem 1.5rem' : '12rem 6rem', background: '#ffffff', position: 'relative' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
@@ -164,7 +164,7 @@ export default function App() {
                 The name <strong>Tov</strong> comes from a Hebrew word meaning <em>good, pleasant, and fit for a purpose</em>. That meaning is at the heart of everything we do.
               </p>
               <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#7a7060', margin: 0 }}>
-                We want every person who steps in front of our camera to see themselves through that lens: confident, valuable, and beautifully made. Photography isn't about stiff poses or forced smiles. It’s about holding space for your real, unforced history.
+                We want every person who steps in front of our camera to see themselves through that lens: confident, valuable, and beautifully made. Photography isn't about stiff poses or forced smiles. It's about holding space for your real, unforced history.
               </p>
             </div>
           </div>
@@ -497,4 +497,54 @@ export default function App() {
                   First Name
                   <input required name="firstName" type="text" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
                 </label>
-                <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing:
+                <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
+                  Last Name
+                  <input required name="lastName" type="text" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
+                </label>
+              </div>
+              <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
+                Email Address
+                <input required name="email" type="email" placeholder="hello@example.com" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
+              </label>
+              <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
+                Preferred Date
+                <input required name="preferredDate" type="date" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
+              </label>
+
+              {/* UPGRADED PACKAGE SELECTOR DROPDOWN */}
+              <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
+                Select Session Package
+                <select name="selectedPackage" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec', color: '#4a5e4e' }}>
+                  <option value="mini">Mini Session — £90 (30 mins)</option>
+                  <option value="standard-1h">Standard Session — £150 (1 Hour)</option>
+                  <option value="standard-2h">Standard Session — £250 (2 Hours)</option>
+                  <option value="premium-3-4h">Premium Session — £350 (3 - 4 Hours)</option>
+                  <option value="premium-5h">Premium Session — £400 (5 Hours)</option>
+                  <option value="full-day">Full Day Session — £600</option>
+                  <option value="bespoke">Bespoke / Custom Quote request</option>
+                </select>
+              </label>
+
+              <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
+                Anything Else? (Optional)
+                <textarea name="notes" rows="4" placeholder="Tell us about your preferred location, vision, or notes..." style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }}></textarea>
+              </label>
+              <button type="submit" style={{ background: '#2c4a35', color: '#fff', border: 'none', padding: '1rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1rem', marginTop: '1rem', cursor: 'pointer' }}>
+                Submit Booking Request
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ padding: isMobile ? '4rem 1.5rem' : '6rem', background: '#2c4a35', color: '#fff', textAlign: 'center' }}>
+        <div style={{ fontFamily: 'serif', fontSize: '1.8rem', marginBottom: '0.5rem' }}>Tov Studios</div>
+        <div style={{ color: '#a39885', fontSize: '0.9rem', marginBottom: '2rem', fontStyle: 'italic' }}>Good. Pleasant. Fit for a purpose.</div>
+        <div style={{ fontSize: '0.8rem', color: 'rgba(247, 243, 236, 0.4)' }}>
+          © {new Date().getFullYear()} Tov Studios. All rights reserved.
+        </div>
+      </footer>
+    </Router>
+  );
+}
