@@ -224,9 +224,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* PRICING SECTION (ROW-BY-ROW SHIFT FOR RESPONSIVE PHONES) */}
+      {/* PRICING SECTION (UPDATED WITH HANDWRITTEN PRICING NOTES) */}
       <section ref={pricingRef} style={{ padding: isMobile ? '5rem 1.5rem' : '12rem 6rem', background: '#2c4a35', color: '#fff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          
+          {/* Section Header */}
           <div style={{ maxWidth: '600px', marginBottom: isMobile ? '4rem' : '8rem' }}>
             <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.2rem', color: '#a39885', display: 'block', marginBottom: '1.5rem' }}>
               02 / The Investment
@@ -237,92 +239,201 @@ export default function App() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {/* TIER 1 */}
+            
+            {/* TIER 1: MINI SESSION */}
             <div style={{ 
               display: 'flex', 
               flexDirection: isMobile ? 'column' : 'row', 
               gap: isMobile ? '1rem' : '2rem', 
-              padding: '2.5rem 0', 
+              padding: '3rem 0', 
               borderTop: '1px solid rgba(247, 243, 236, 0.15)',
               justifyContent: 'space-between'
             }}>
-              <div style={{ display: 'flex', gap: '1.5rem', flex: '1' }}>
+              <div style={{ display: 'flex', gap: '1.5rem', flex: '1.2' }}>
                 <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>01</span>
                 <div>
-                  <h3 style={{ fontFamily: 'serif', fontSize: '1.8rem', fontWeight: 'normal', margin: '0 0 0.5rem 0', color: '#f7f3ec' }}>🌿 Portrait Session</h3>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: '1.6', maxWidth: '45ch' }}>Individual or small group sessions. Timeless headshots, professional branding, or private transformations.</p>
+                  <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
+                    ⚡ Mini Session
+                  </h3>
+                  <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
+                    Quick portraits, profile refreshes, or intimate couples pictures. A streamlined capture session for timeless results.
+                  </p>
                 </div>
               </div>
-              <ul style={{ color: '#a39885', listStyleType: 'none', padding: isMobile ? '0 0 0 2.5rem' : '0', margin: 0, lineHeight: '2', fontSize: '0.9rem', minWidth: '220px' }}>
-                <li>— 1 to 2 Hour Duration</li>
-                <li>— 2 Outfit Changes</li>
-                <li>— 30+ Curated Digital Prints</li>
+              <ul style={{ color: '#a39885', listStyleType: 'none', padding: isMobile ? '0 0 0 2.5rem' : '0', margin: 0, lineHeight: '2', fontSize: '0.95rem', minWidth: '220px' }}>
+                <li>— 30 Minutes Duration</li>
+                <li>— 5 Professionally Edited Prints</li>
+                <li>— Perfect for Portraits & Couples</li>
               </ul>
-              <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '100px' }}>
-                £250
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase' }}>From</span>
+              <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '150px' }}>
+                £90
+                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>Fixed Rate</span>
               </div>
             </div>
 
-            {/* TIER 2 */}
+            {/* TIER 2: STANDARD SESSION */}
             <div style={{ 
               display: 'flex', 
-              flexDirection: isMobile ? 'column' : 'row', 
-              gap: isMobile ? '1rem' : '2rem', 
-              padding: '2.5rem 0', 
-              borderTop: '1px solid rgba(247, 243, 236, 0.15)',
-              justifyContent: 'space-between'
+              flexDirection: 'column', 
+              padding: '3rem 0', 
+              borderTop: '1px solid rgba(247, 243, 236, 0.15)'
             }}>
-              <div style={{ display: 'flex', gap: '1.5rem', flex: '1' }}>
-                <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>02</span>
-                <div>
-                  <h3 style={{ fontFamily: 'serif', fontSize: '1.8rem', fontWeight: 'normal', margin: '0 0 0.5rem 0', color: '#f7f3ec' }}>🎂 Events & Milestones</h3>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: '1.6', maxWidth: '45ch' }}>Beautiful preservation for graduations, birthday celebrations, or dynamic community moments.</p>
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: isMobile ? 'column' : 'row', 
+                gap: isMobile ? '1rem' : '2rem', 
+                justifyContent: 'space-between',
+                marginBottom: '2rem'
+              }}>
+                <div style={{ display: 'flex', gap: '1.5rem', flex: '1.2' }}>
+                  <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>02</span>
+                  <div>
+                    <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
+                      🌿 Standard Session
+                    </h3>
+                    <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
+                      Flexible mid-length coverage designed for social events, birthdays, bridal showers, baby dedications, or comprehensive couple work.
+                    </p>
+                  </div>
+                </div>
+                <div style={{ color: '#a39885', fontSize: '0.95rem', minWidth: '220px', paddingLeft: isMobile ? '2.5rem' : '0' }}>
+                  <span style={{ display: 'block', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>Options Available:</span>
+                  <div style={{ color: '#f7f3ec', lineHeight: '1.8' }}>
+                    • 1-Hour Coverage<br />
+                    • 2-Hour Coverage
+                  </div>
+                </div>
+                <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '150px' }}>
+                  £150 – £250
+                  <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>Range</span>
                 </div>
               </div>
-              <ul style={{ color: '#a39885', listStyleType: 'none', padding: isMobile ? '0 0 0 2.5rem' : '0', margin: 0, lineHeight: '2', fontSize: '0.9rem', minWidth: '220px' }}>
-                <li>— Up to 3 Hours Coverage</li>
-                <li>— Candid & Posed Curation</li>
-                <li>— 60+ High-Res Deliverables</li>
-              </ul>
-              <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '100px' }}>
-                £400
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase' }}>From</span>
+
+              {/* Nested Standard Sub-tiers */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingLeft: isMobile ? '2.5rem' : '3.5rem', background: 'rgba(247, 243, 236, 0.03)', padding: '2rem', borderRadius: '4px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(247, 243, 236, 0.08)', paddingBottom: '1rem' }}>
+                  <div>
+                    <strong style={{ color: '#f7f3ec', display: 'block', fontFamily: 'serif', fontSize: '1.15rem' }}>Option A: 1-Hour Session</strong>
+                    <span style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Great for quick events, family dinners, birthdays, and couple portraits.</span>
+                  </div>
+                  <div style={{ textAlign: isMobile ? 'left' : 'right', minWidth: '120px' }}>
+                    <span style={{ color: '#a39885', fontSize: '0.95rem', display: 'block' }}>10 Edited Pictures</span>
+                    <strong style={{ color: '#f7f3ec', fontSize: '1.25rem' }}>£150</strong>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div>
+                    <strong style={{ color: '#f7f3ec', display: 'block', fontFamily: 'serif', fontSize: '1.15rem' }}>Option B: 2-Hour Session</strong>
+                    <span style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Perfect for dedicated birthday parties, bridal showers, and baby dedications.</span>
+                  </div>
+                  <div style={{ textAlign: isMobile ? 'left' : 'right', minWidth: '120px' }}>
+                    <span style={{ color: '#a39885', fontSize: '0.95rem', display: 'block' }}>30 Edited Pictures</span>
+                    <strong style={{ color: '#f7f3ec', fontSize: '1.25rem' }}>£250</strong>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* TIER 3 */}
+            {/* TIER 3: PREMIUM SESSION */}
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              padding: '3rem 0', 
+              borderTop: '1px solid rgba(247, 243, 236, 0.15)'
+            }}>
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: isMobile ? 'column' : 'row', 
+                gap: isMobile ? '1rem' : '2rem', 
+                justifyContent: 'space-between',
+                marginBottom: '2rem'
+              }}>
+                <div style={{ display: 'flex', gap: '1.5rem', flex: '1.2' }}>
+                  <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>03</span>
+                  <div>
+                    <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
+                      👑 Premium Session
+                    </h3>
+                    <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
+                      Deep editorial production, extensive event coverage, and premium creative styling assets built to stand out.
+                    </p>
+                  </div>
+                </div>
+                <div style={{ color: '#a39885', fontSize: '0.95rem', minWidth: '220px', paddingLeft: isMobile ? '2.5rem' : '0' }}>
+                  <span style={{ display: 'block', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>Coverage:</span>
+                  <div style={{ color: '#f7f3ec', lineHeight: '1.8' }}>
+                    • 3 to 4 Hours<br />
+                    • 5 Hours
+                  </div>
+                </div>
+                <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '150px' }}>
+                  £350 – £400
+                  <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>Range</span>
+                </div>
+              </div>
+
+              {/* Nested Premium Sub-tiers */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingLeft: isMobile ? '2.5rem' : '3.5rem', background: 'rgba(247, 243, 236, 0.03)', padding: '2rem', borderRadius: '4px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(247, 243, 236, 0.08)', paddingBottom: '1rem' }}>
+                  <div>
+                    <strong style={{ color: '#f7f3ec', display: 'block', fontFamily: 'serif', fontSize: '1.15rem' }}>Option A: 3 to 4 Hours</strong>
+                    <span style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Ideal for comprehensive event modules, weddings, or stylized visual campaigns.</span>
+                  </div>
+                  <div style={{ textAlign: isMobile ? 'left' : 'right', minWidth: '120px' }}>
+                    <span style={{ color: '#a39885', fontSize: '0.95rem', display: 'block' }}>35 to 40 Edited Pictures</span>
+                    <strong style={{ color: '#f7f3ec', fontSize: '1.25rem' }}>£350</strong>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div>
+                    <strong style={{ color: '#f7f3ec', display: 'block', fontFamily: 'serif', fontSize: '1.15rem' }}>Option B: 5 Hours</strong>
+                    <span style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Complete, long-form documentary asset gathering for extended milestones.</span>
+                  </div>
+                  <div style={{ textAlign: isMobile ? 'left' : 'right', minWidth: '120px' }}>
+                    <span style={{ color: '#a39885', fontSize: '0.95rem', display: 'block' }}>50 Edited Pictures</span>
+                    <strong style={{ color: '#f7f3ec', fontSize: '1.25rem' }}>£400</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TIER 4: 1 DAY PHOTOGRAPHY SESSION */}
             <div style={{ 
               display: 'flex', 
               flexDirection: isMobile ? 'column' : 'row', 
               gap: isMobile ? '1rem' : '2rem', 
-              padding: '2.5rem 0', 
+              padding: '3rem 0', 
               borderTop: '1px solid rgba(247, 243, 236, 0.15)',
               borderBottom: '1px solid rgba(247, 243, 236, 0.15)',
               justifyContent: 'space-between'
             }}>
-              <div style={{ display: 'flex', gap: '1.5rem', flex: '1' }}>
-                <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>03</span>
+              <div style={{ display: 'flex', gap: '1.5rem', flex: '1.2' }}>
+                <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.2rem' }}>04</span>
                 <div>
-                  <h3 style={{ fontFamily: 'serif', fontSize: '1.8rem', fontWeight: 'normal', margin: '0 0 0.5rem 0', color: '#f7f3ec' }}>💍 Wedding & Engagement</h3>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: '1.6', maxWidth: '45ch' }}>Luxury documentary storytelling coverage formatted beautifully from vows to the late night frames.</p>
+                  <h3 style={{ fontFamily: 'serif', fontSize: '2rem', fontWeight: 'normal', margin: '0 0 1rem 0', color: '#f7f3ec' }}>
+                    🎬 Full Day Session
+                  </h3>
+                  <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.7', margin: 0, maxWidth: '45ch' }}>
+                    Full structural timeline coverage. Ideal for complete wedding narratives, brand catalogs, or absolute day-long editorial events.
+                  </p>
                 </div>
               </div>
-              <ul style={{ color: '#a39885', listStyleType: 'none', padding: isMobile ? '0 0 0 2.5rem' : '0', margin: 0, lineHeight: '2', fontSize: '0.9rem', minWidth: '220px' }}>
-                <li>— Full Structural Timeline</li>
-                <li>— 48-Hour Sneak Peek Prints</li>
-                <li>— 100+ Final Curated Gallery</li>
+              <ul style={{ color: '#a39885', listStyleType: 'none', padding: isMobile ? '0 0 0 2.5rem' : '0', margin: 0, lineHeight: '2', fontSize: '0.95rem', minWidth: '220px' }}>
+                <li>— Extensive All-Day Coverage</li>
+                <li>— Custom Curated Layout Plan</li>
+                <li>— Max Edited Image Delivery Bundle</li>
               </ul>
-              <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '100px' }}>
-                £1,200
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase' }}>From</span>
+              <div style={{ textAlign: isMobile ? 'left' : 'right', paddingLeft: isMobile ? '2.5rem' : '0', fontFamily: 'serif', fontSize: '1.8rem', color: '#f7f3ec', minWidth: '150px' }}>
+                £600
+                <span style={{ display: 'block', fontSize: '0.75rem', color: '#a39885', textTransform: 'uppercase', letterSpacing: '0.05rem', marginTop: '0.25rem' }}>Fixed Rate</span>
               </div>
             </div>
+
           </div>
 
           <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '2rem', marginTop: '5rem', alignItems: isMobile ? 'start' : 'center', justifyContent: 'space-between' }}>
             <p style={{ color: '#cbd5e1', fontSize: '1.05rem', lineHeight: '1.7', margin: 0, maxWidth: '60ch' }}>
-              Don't see a structure that perfectly mirrors your plans? We offer bespoke customization options where you control the timeline.
+              Don't see a structure that perfectly mirrors your plans? We offer custom quotes.
             </p>
             <button onClick={() => scrollToSection(enquiryRef)} style={{ background: '#f7f3ec', color: '#2c4a35', border: 'none', padding: '1rem 2rem', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1rem', cursor: 'pointer', fontWeight: 'bold', width: isMobile ? '100%' : 'auto' }}>
               Custom Quote
