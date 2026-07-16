@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+// Logo and Curated Gallery Images imports
 import logoImg from './assets/Tovo_logo.jpg'; 
+import portraitEmerald from './assets/portrait-emerald.jpg';
+import detailClutch from './assets/detail-clutch.jpg';
+import portraitBlue from './assets/portrait-blue.jpg';
+import joyDance from './assets/joy-dance.jpg';
+import elegantCouple from './assets/elegant-couple.jpg';
+import pureEmotion from './assets/pure-emotion.jpg';
 
 // ── INERTIA CURSOR TRACKER ──
 const CustomCursor = () => {
@@ -70,7 +77,6 @@ export default function App() {
   const pricingRef = React.useRef(null);
   const enquiryRef = React.useRef(null);
 
-  // Dynamic state hooks to track layout size changes on device orientation swaps
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -126,7 +132,6 @@ export default function App() {
       <section ref={aboutRef} style={{ padding: isMobile ? '5rem 1.5rem' : '12rem 6rem', background: '#ffffff', position: 'relative' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Top layout stacks vertically on phone display columns */}
           <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '6rem', alignItems: 'start', marginBottom: isMobile ? '3rem' : '8rem' }}>
             <div style={{ width: isMobile ? '100%' : '45%' }}>
               <h2 style={{ fontFamily: 'serif', fontSize: isMobile ? '2.4rem' : '4rem', color: '#2c4a35', lineHeight: '1.1', fontWeight: 'normal', margin: 0 }}>
@@ -146,10 +151,8 @@ export default function App() {
 
           <div className="editorial-line"></div>
 
-          {/* Core pillars stack cleanly as individual card listings on mobile */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '3rem' : '0', position: 'relative', marginTop: '2rem' }}>
             {isMobile ? (
-              // Stacking mobile list version
               <>
                 <div>
                   <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.3rem', display: 'block', marginBottom: '0.5rem' }}>✦ Intentional</span>
@@ -169,7 +172,6 @@ export default function App() {
                 </div>
               </>
             ) : (
-              // Asymmetrical desktop layout
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem' }}>
                 <div style={{ gridColumn: '1 / span 5', paddingRight: '2rem', marginBottom: '4rem' }}>
                   <span style={{ fontFamily: 'serif', fontStyle: 'italic', color: '#a39885', fontSize: '1.5rem', display: 'block', marginBottom: '1rem' }}>✦ Intentional</span>
@@ -193,39 +195,56 @@ export default function App() {
         </div>
       </section>
 
-      {/* GALLERY IMAGES SECTION */}
+      {/* GALLERY IMAGES SECTION (FEATURING YOUR REAL CURATED PHOTOS) */}
       <section ref={galleryRef} style={{ padding: isMobile ? '5rem 1.5rem' : '10rem 6rem', background: '#f7f3ec' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.15rem', color: '#a39885' }}>Our Work</span>
-          <h2 style={{ fontFamily: 'serif', fontSize: isMobile ? '2.4rem' : '3.5rem', color: '#2c4a35', marginTop: '0.5rem', marginBottom: '3rem', fontWeight: 'normal' }}>
+          <h2 style={{ fontFamily: 'serif', fontSize: isMobile ? '2.4rem' : '3.5rem', color: '#2c4a35', marginTop: '0.5rem', marginBottom: '4rem', fontWeight: 'normal' }}>
             Moments preserved
           </h2>
+
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))', 
-            gap: '1.5rem' 
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', 
+            gap: '2.5rem' 
           }}>
-            <div style={{ position: 'relative', background: '#d0caae', minHeight: isMobile ? '350px' : '500px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
-              <span style={{ color: '#fff', fontSize: '0.9rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif' }}>Wedding</span>
+            {/* Image 1: Emerald Green Portrait */}
+            <div style={{ position: 'relative', backgroundImage: `url(${portraitEmerald})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: isMobile ? '400px' : '550px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
+              <span style={{ color: '#fff', fontSize: '0.8rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif', background: 'rgba(44, 74, 53, 0.8)', padding: '0.5rem 1rem' }}>Portraits</span>
             </div>
-            <div style={{ position: 'relative', background: '#b1b69d', minHeight: isMobile ? '350px' : '500px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
-              <span style={{ color: '#fff', fontSize: '0.9rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif' }}>Portrait</span>
+
+            {/* Image 2: Detail Clutch (Editorial element) */}
+            <div style={{ position: 'relative', backgroundImage: `url(${detailClutch})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: isMobile ? '400px' : '550px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
+              <span style={{ color: '#fff', fontSize: '0.8rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif', background: 'rgba(44, 74, 53, 0.8)', padding: '0.5rem 1rem' }}>Details</span>
             </div>
-            <div style={{ position: 'relative', background: '#bcaf9b', minHeight: isMobile ? '350px' : '500px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
-              <span style={{ color: '#fff', fontSize: '0.9rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif' }}>Maternity</span>
+
+            {/* Image 3: Blue / Pink Portrait */}
+            <div style={{ position: 'relative', backgroundImage: `url(${portraitBlue})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: isMobile ? '400px' : '550px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
+              <span style={{ color: '#fff', fontSize: '0.8rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif', background: 'rgba(44, 74, 53, 0.8)', padding: '0.5rem 1rem' }}>Portraits</span>
             </div>
-            <div style={{ position: 'relative', background: '#a1a893', minHeight: isMobile ? '350px' : '500px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
-              <span style={{ color: '#fff', fontSize: '0.9rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif' }}>Graduation</span>
+
+            {/* Image 4: Joy Dance */}
+            <div style={{ position: 'relative', backgroundImage: `url(${joyDance})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: isMobile ? '400px' : '550px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
+              <span style={{ color: '#fff', fontSize: '0.8rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif', background: 'rgba(44, 74, 53, 0.8)', padding: '0.5rem 1rem' }}>Joy</span>
+            </div>
+
+            {/* Image 5: Elegant Couple */}
+            <div style={{ position: 'relative', backgroundImage: `url(${elegantCouple})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: isMobile ? '400px' : '550px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
+              <span style={{ color: '#fff', fontSize: '0.8rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif', background: 'rgba(44, 74, 53, 0.8)', padding: '0.5rem 1rem' }}>Connection</span>
+            </div>
+
+            {/* Image 6: Pure Emotion */}
+            <div style={{ position: 'relative', backgroundImage: `url(${pureEmotion})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: isMobile ? '400px' : '550px', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
+              <span style={{ color: '#fff', fontSize: '0.8rem', letterSpacing: '0.1rem', textTransform: 'uppercase', fontFamily: 'serif', background: 'rgba(44, 74, 53, 0.8)', padding: '0.5rem 1rem' }}>Emotion</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PRICING SECTION (UPDATED WITH HANDWRITTEN PRICING NOTES) */}
+      {/* PRICING SECTION */}
       <section ref={pricingRef} style={{ padding: isMobile ? '5rem 1.5rem' : '12rem 6rem', background: '#2c4a35', color: '#fff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Section Header with "02 / The Investment" removed */}
           <div style={{ maxWidth: '600px', marginBottom: isMobile ? '4rem' : '8rem' }}>
             <h2 style={{ fontFamily: 'serif', fontSize: isMobile ? '2.4rem' : '4rem', color: '#f7f3ec', lineHeight: '1.1', fontWeight: 'normal', margin: 0 }}>
               Packages <br />& <span className="serif-italic">Rates.</span>
@@ -303,7 +322,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Nested Standard Sub-tiers */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingLeft: isMobile ? '2.5rem' : '3.5rem', background: 'rgba(247, 243, 236, 0.03)', padding: '2rem', borderRadius: '4px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(247, 243, 236, 0.08)', paddingBottom: '1rem' }}>
                   <div>
@@ -366,7 +384,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Nested Premium Sub-tiers */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingLeft: isMobile ? '2.5rem' : '3.5rem', background: 'rgba(247, 243, 236, 0.03)', padding: '2rem', borderRadius: '4px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(247, 243, 236, 0.08)', paddingBottom: '1rem' }}>
                   <div>
@@ -475,7 +492,7 @@ export default function App() {
               <input type="date" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
             </label>
 
-            {/* UPGRADED PACKAGE SELECTOR DROPDOWN */}
+            {/* PACKAGE SELECTOR DROPDOWN */}
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
               Select Session Package
               <select style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec', color: '#4a5e4e' }}>
