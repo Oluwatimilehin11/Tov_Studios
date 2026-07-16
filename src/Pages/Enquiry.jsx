@@ -19,15 +19,13 @@ export default function Enquiry() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Send data to Formspree using fetch so your styled success state still triggers!
     try {
       const response = await fetch('https://formspree.io/f/xlgqgvrn', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: new FormData(e.target)
       });
 
       if (response.ok) {
@@ -36,7 +34,7 @@ export default function Enquiry() {
         alert("Oops! There was a problem submitting your form. Please try again.");
       }
     } catch (error) {
-      alert("Oops! There was a problem submitting your form. Please try again.");
+      alert("Oops! Connection error. Please try again.");
     }
   };
 
