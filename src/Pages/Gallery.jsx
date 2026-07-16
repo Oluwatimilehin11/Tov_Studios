@@ -1,34 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// 1. Filter tags grouped beautifully from your journal targets
-const CATEGORIES = ['All', 'Portraits & Branding', 'Events & Birthdays', 'Graduations', 'Couples & Weddings'];
+// Import your real, curated assets
+import portraitEmerald from '../assets/portrait-emerald.jpg';
+import detailClutch from '../assets/detail-clutch.jpg';
+import portraitBlue from '../assets/portrait-blue.jpg';
+import joyDance from '../assets/joy-dance.jpg';
+import elegantCouple from '../assets/elegant-couple.jpg';
+import pureEmotion from '../assets/pure-emotion.jpg';
 
-// 2. Portfolio dataset built directly from your handwritten project targets
+// 1. Filter tags grouped beautifully
+const CATEGORIES = ['All', 'Portraits & Branding', 'Events & Birthdays', 'Couples & Weddings'];
+
+// 2. Portfolio dataset mapped to your curated images
 const GALLERY_ITEMS = [
-  { id: 1, category: 'Portraits & Branding', title: 'Personal Branding Session', src: 'https://via.placeholder.com/400x500' },
-  { id: 2, category: 'Events & Birthdays', title: 'Intimate Birthday Gathering', src: 'https://via.placeholder.com/400x300' },
-  { id: 3, category: 'Graduations', title: 'Student Graduation Portrait', src: 'https://via.placeholder.com/400x500' },
-  { id: 4, category: 'Couples & Weddings', title: 'Editorial Couple Shoot', src: 'https://via.placeholder.com/400x300' },
-  { id: 5, category: 'Portraits & Branding', title: 'Studio Portrait Session', src: 'https://via.placeholder.com/400x500' },
-  { id: 6, category: 'Events & Birthdays', title: 'Small Gathering Coverage', src: 'https://via.placeholder.com/400x300' },
-  { id: 7, category: 'Graduations', title: 'Milestone Achievement', src: 'https://via.placeholder.com/400x500' },
-  { id: 8, category: 'Couples & Weddings', title: 'Wedding Celebration Day', src: 'https://via.placeholder.com/400x500' },
+  { 
+    id: 1, 
+    category: 'Portraits & Branding', 
+    title: 'Emerald Portrait Session', 
+    src: portraitEmerald 
+  },
+  { 
+    id: 2, 
+    category: 'Portraits & Branding', 
+    title: 'Radiant Studio Portrait', 
+    src: portraitBlue 
+  },
+  { 
+    id: 3, 
+    category: 'Events & Birthdays', 
+    title: 'Editorial Detail & Styling', 
+    src: detailClutch 
+  },
+  { 
+    id: 4, 
+    category: 'Events & Birthdays', 
+    title: 'Thanksgiving Celebration', 
+    src: pureEmotion 
+  },
+  { 
+    id: 5, 
+    category: 'Events & Birthdays', 
+    title: 'Traditional Celebration Dance', 
+    src: joyDance 
+  },
+  { 
+    id: 6, 
+    category: 'Couples & Weddings', 
+    title: 'Connection & Elegance', 
+    src: elegantCouple 
+  }
 ];
 
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Dynamic filter comparison matching the state token
+  // Handle dynamic layout scaling on resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Filter comparison
   const filteredItems = activeFilter === 'All' 
     ? GALLERY_ITEMS 
     : GALLERY_ITEMS.filter(item => item.category === activeFilter);
 
   return (
-    <section style={{ padding: '7rem 6rem', background: '#f7f3ec', minHeight: '80vh' }}>
+    <section style={{ 
+      padding: isMobile ? '5rem 1.5rem' : '7rem 6rem', 
+      background: '#f7f3ec', 
+      minHeight: '80vh' 
+    }}>
       
       {/* Header Container */}
-      <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ fontFamily: 'var(--ff-display, serif)', fontSize: '3.5rem', color: '#2c4a35', margin: 0 }}>
+      <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+        <h2 style={{ 
+          fontFamily: 'serif', 
+          fontSize: isMobile ? '2.5rem' : '3.5rem', 
+          color: '#2c4a35', 
+          margin: 0,
+          fontWeight: 'normal'
+        }}>
           Moments Preserved
         </h2>
         <p style={{ color: '#7a7060', fontSize: '1.1rem', marginTop: '0.5rem' }}>
@@ -36,8 +90,13 @@ export default function Gallery() {
         </p>
       </div>
 
-      {/* ── DYNAMIC FILTER BUTTONS BAR ── */}
-      <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
+      {/* ── FILTER BUTTONS BAR ── */}
+      <div style={{ 
+        display: 'flex', 
+        gap: isMobile ? '1rem' : '1.5rem', 
+        marginBottom: isMobile ? '2rem' : '3rem', 
+        flexWrap: 'wrap' 
+      }}>
         {CATEGORIES.map((category) => (
           <button
             key={category}
@@ -48,11 +107,13 @@ export default function Gallery() {
               borderBottom: activeFilter === category ? '2px solid #2c4a35' : '2px solid transparent',
               color: activeFilter === category ? '#2c4a35' : '#7a7060',
               padding: '0.5rem 0',
-              fontSize: '1rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
+              letterSpacing: '0.05rem',
               fontWeight: activeFilter === category ? '600' : '400',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-              fontFamily: 'sans-serif'
+              fontFamily: 'serif',
+              textTransform: 'uppercase'
             }}
           >
             {category}
@@ -63,7 +124,7 @@ export default function Gallery() {
       {/* ── RESPONSIVE IMAGE GRID ── */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
+        gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(350px, 1fr))', 
         gap: '2.5rem',
         alignItems: 'start'
       }}>
@@ -77,13 +138,18 @@ export default function Gallery() {
               transition: 'transform 0.4s ease'
             }}
           >
-            <div style={{ width: '100%', overflow: 'hidden', background: '#e0dbd3' }}>
+            <div style={{ 
+              width: '100%', 
+              overflow: 'hidden', 
+              background: '#e0dbd3',
+              height: isMobile ? '380px' : '480px'
+            }}>
               <img 
                 src={item.src} 
                 alt={item.title} 
                 style={{ 
                   width: '100%', 
-                  height: 'auto', 
+                  height: '100%', 
                   display: 'block',
                   objectFit: 'cover',
                   transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
