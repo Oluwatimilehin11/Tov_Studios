@@ -339,7 +339,7 @@ export default function App() {
                     <span style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Perfect for dedicated birthday parties, bridal showers, and baby dedications.</span>
                   </div>
                   <div style={{ textAlign: isMobile ? 'left' : 'right', minWidth: '120px' }}>
-                    <span style={{ color: '#a39885', fontSize: '0.95rem', display: 'block' }}>30 Edited Pictures</span>
+                    <span style={{ color: '#a39885', fontSize: '0.95rem', display: 'block' }}>25 Edited Pictures</span>
                     <strong style={{ color: '#f7f3ec', fontSize: '1.25rem' }}>£250</strong>
                   </div>
                 </div>
