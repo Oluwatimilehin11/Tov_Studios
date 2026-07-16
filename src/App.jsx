@@ -109,7 +109,7 @@ export default function App() {
             See yourself through a <em style={{ fontStyle: 'italic', fontFamily: 'serif' }}>good</em> lens.
           </h1>
           <p style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', lineHeight: '1.8', color: '#4a5e4e', maxWidth: '55ch', marginBottom: '3.5rem', fontFamily: 'serif' }}>
-            At Tov Studios, every portrait is an act of affirmation. We capture who you truly are—confident, valuable, and beautifully made.
+            At Tov Studios, every portrait is an act of affirmation. We capture who you truly are, confident, valuable, and beautifully made.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
             <button onClick={() => scrollToSection(enquiryRef)} style={{ background: '#2c4a35', color: '#fff', border: 'none', padding: isMobile ? '1rem 2rem' : '1.2rem 2.5rem', fontSize: '0.9rem', letterSpacing: '0.1rem', textTransform: 'uppercase', cursor: 'pointer' }}>
@@ -129,9 +129,6 @@ export default function App() {
           {/* Top layout stacks vertically on phone display columns */}
           <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '6rem', alignItems: 'start', marginBottom: isMobile ? '3rem' : '8rem' }}>
             <div style={{ width: isMobile ? '100%' : '45%' }}>
-              <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.2rem', color: '#a39885', display: 'block', marginBottom: '1rem' }}>
-                01 / The Manifesto
-              </span>
               <h2 style={{ fontFamily: 'serif', fontSize: isMobile ? '2.4rem' : '4rem', color: '#2c4a35', lineHeight: '1.1', fontWeight: 'normal', margin: 0 }}>
                 More than a <br /><span className="serif-italic">photograph.</span>
               </h2>
@@ -142,7 +139,7 @@ export default function App() {
                 The name <strong>Tov</strong> comes from a Hebrew word meaning <em>good, pleasant, and fit for a purpose</em>. That meaning is at the heart of everything we do.
               </p>
               <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#7a7060', margin: 0 }}>
-                We want every person who steps in front of our camera to see themselves through that lens—confident, valuable, and beautifully made. Photography isn't about stiff poses or forced smiles. It’s about holding space for your real, unforced history.
+                We want every person who steps in front of our camera to see themselves through that lens: confident, valuable, and beautifully made. Photography isn't about stiff poses or forced smiles. It’s about holding space for your real, unforced history.
               </p>
             </div>
           </div>
@@ -228,11 +225,8 @@ export default function App() {
       <section ref={pricingRef} style={{ padding: isMobile ? '5rem 1.5rem' : '12rem 6rem', background: '#2c4a35', color: '#fff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Section Header */}
+          {/* Section Header with "02 / The Investment" removed */}
           <div style={{ maxWidth: '600px', marginBottom: isMobile ? '4rem' : '8rem' }}>
-            <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.2rem', color: '#a39885', display: 'block', marginBottom: '1.5rem' }}>
-              02 / The Investment
-            </span>
             <h2 style={{ fontFamily: 'serif', fontSize: isMobile ? '2.4rem' : '4rem', color: '#f7f3ec', lineHeight: '1.1', fontWeight: 'normal', margin: 0 }}>
               Packages <br />& <span className="serif-italic">Rates.</span>
             </h2>
@@ -480,19 +474,24 @@ export default function App() {
               Preferred Date
               <input type="date" style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }} />
             </label>
+
+            {/* UPGRADED PACKAGE SELECTOR DROPDOWN */}
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
-              Preferred Location
+              Select Session Package
               <select style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec', color: '#4a5e4e' }}>
-                <option>Outdoor / Natural Setting</option>
-                <option>Studio (Indoor)</option>
-                <option>Client's Home</option>
-                <option>Beach / Waterfront</option>
-                <option>Urban / City</option>
+                <option value="mini">Mini Session — £90 (30 mins)</option>
+                <option value="standard-1h">Standard Session — £150 (1 Hour)</option>
+                <option value="standard-2h">Standard Session — £250 (2 Hours)</option>
+                <option value="premium-3-4h">Premium Session — £350 (3 - 4 Hours)</option>
+                <option value="premium-5h">Premium Session — £400 (5 Hours)</option>
+                <option value="full-day">Full Day Session — £600</option>
+                <option value="bespoke">Bespoke / Custom Quote request</option>
               </select>
             </label>
+
             <label style={{ display: 'flex', flexDirection: 'column', color: '#2c4a35', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05rem' }}>
               Anything Else? (Optional)
-              <textarea rows="4" placeholder="Tell us about your vision..." style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }}></textarea>
+              <textarea rows="4" placeholder="Tell us about your preferred location, vision, or notes..." style={{ marginTop: '0.5rem', padding: '1rem', border: '1px solid #cbd5e1', background: '#f7f3ec' }}></textarea>
             </label>
             <button type="submit" style={{ background: '#2c4a35', color: '#fff', border: 'none', padding: '1rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1rem', marginTop: '1rem', cursor: 'pointer' }}>
               Submit Booking Request
