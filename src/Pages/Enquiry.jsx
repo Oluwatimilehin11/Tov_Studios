@@ -4,7 +4,6 @@ export default function Enquiry() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     category: 'Portraits',
     date: '',
     notes: ''
@@ -17,11 +16,28 @@ export default function Enquiry() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // This logs the user's custom layout choice to the console for now
-    console.log('Enquiry Submitted:', formData);
-    setSubmitted(true);
+    
+    // Send data to Formspree using fetch so your styled success state still triggers!
+    try {
+      const response = await fetch('https://formspree.io/f/xlgqgvrn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Oops! There was a problem submitting your form. Please try again.");
+      }
+    } catch (error) {
+      alert("Oops! There was a problem submitting your form. Please try again.");
+    }
   };
 
   return (
@@ -185,7 +201,6 @@ export default function Enquiry() {
         </div>
 
       </div>
-
     </section>
   );
 }
