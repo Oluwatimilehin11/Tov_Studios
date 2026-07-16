@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 export default function App() {
-  // Navigation and screen responsiveness hooks
-  const [isMobile, setIsMobile] = useState(false); 
+  // 1. Responsive mobile check (Updates live if someone rotates their screen or uses a phone!)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); 
   const enquiryRef = React.useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // React state to handle showing the success message locally after submit
   const [submitted, setSubmitted] = useState(false);
@@ -37,7 +42,7 @@ export default function App() {
   };
 
   return (
-    <Router>
+    <>
       {/* ... Your other sections, navigation, and portfolio sections go here ... */}
 
       {/* RESERVATION FORM SYSTEM */}
@@ -118,6 +123,6 @@ export default function App() {
           © {new Date().getFullYear()} Tov Studios. All rights reserved.
         </div>
       </footer>
-    </Router>
+    </>
   );
 }

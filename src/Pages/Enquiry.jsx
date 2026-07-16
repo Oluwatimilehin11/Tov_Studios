@@ -16,10 +16,27 @@ export default function Enquiry() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    // This allows the browser to natively submit the data to Formspree
-    // while updating your local UI state.
-    setSubmitted(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevents page reload / Formspree redirect
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xlgqgvrn', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Oops! There was a problem submitting your request. Please try again.");
+      }
+    } catch (error) {
+      alert("Connection error. Please try again.");
+    }
   };
 
   return (
@@ -59,8 +76,6 @@ export default function Enquiry() {
         ) : (
           <form 
             onSubmit={handleSubmit}
-            action="https://formspree.io/f/xlgqgvrn" 
-            method="POST"
             style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}
           >
             
